@@ -36,9 +36,10 @@ int timeout_connect(const char* ip, int port, int time)
     socklen_t len = sizeof(address);    //  __time_t tv_usec; long 类型 微秒 
                                         //}
     ret = setsockopt(sockfd, SOL_SOCKET, SO_SNDTIMEO, &timeout, len);
+    //SOL_SOCKET通用socket选项，与协议无关
     assert(ret != -1);
 
-    ret = connect(sockfd, (struct sockaddr*)&address, sizeof(address));
+    ret = connect(sockfd, (struct sockaddr*)&address, sizeof(address)); //等待10s，通用是默认等待75s
     if (ret == -1) 
     {
         //超时对应的错误号是EINPROGRESS,下面这个条件如果成立,我们就可以处理定时任务了
