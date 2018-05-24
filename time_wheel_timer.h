@@ -1,4 +1,5 @@
 //时间轮
+//定时器容器类型
 #ifndef _TIME_WHEEL_TIMER_H
 #define _TIME_WHEEL_TIMER_H
 
