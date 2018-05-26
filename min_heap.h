@@ -1,4 +1,4 @@
-//最小堆实现的定时器--时间堆
+//时间堆
 #ifndef _MIN_HEAP_H
 #define _MIN_HEAP_H
 
