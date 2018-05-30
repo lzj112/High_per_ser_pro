@@ -1,4 +1,4 @@
-//每隔一秒打印hello world
+//每隔一秒打印 hello world
 
 #include <stdio.h>
 #include <event.h>
