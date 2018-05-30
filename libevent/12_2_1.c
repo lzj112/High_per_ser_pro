@@ -1,4 +1,4 @@
-//收到终止信号后，延时2s关闭
+//收到终止信号后延时2s关闭
 
 #include <sys/signal.h>
 #include <event.h>
