@@ -116,7 +116,6 @@ void eventdel(int efd, struct myevent_s *ev)
 //当有新的连接时，调用监听listenfd的此回调函数，指定新sockfd的回调函数
 void acceptconn(int lfd, int events, void *arg)
 {
-    printf("****************************\n");
     struct sockaddr_in cin;
     socklen_t len = sizeof(cin);
     int cfd, i;
@@ -178,6 +177,7 @@ void recvdata(int fd, int events, void *arg)
         /* 转换为发送事件 */
         eventset(ev, fd, senddata, ev);
         eventadd(g_efd, EPOLLOUT, ev); //再把其添加到监听事件中,此时回调函数改为了senddata
+        //并将socket事件修改为EPOLLOUT，用于服务器发送消息给客户端
     }
     else if (len == 0) 
     {
@@ -294,11 +294,13 @@ int main(int argc, char *argv[])
             struct myevent_s *ev = (struct myevent_s *)events[i].data.ptr;
             if ((events[i].events & EPOLLIN) && (ev->events & EPOLLIN)) 
             {
+                printf("1**********************\n");
                 //可读
                 ev->call_back(ev->fd, events[i].events, ev->arg);
             }
             if ((events[i].events & EPOLLOUT) && (ev->events & EPOLLOUT)) 
             {
+                printf("2*********************\n");
                 //可写
                 ev->call_back(ev->fd, events[i].events, ev->arg);
             }
