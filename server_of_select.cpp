@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
                 printf("new connection client[%d] %s : %d\n", 
                     conn_amount, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
                 bzero(buffer, sizeof(buffer));
-                ret = recv(sock_client, buffer, 1024, 0);
+                ret = recv(sock_client, buffer, 1024, 0); //客户端会回应一条消息    
                 if (ret < 0) 
                 {
                     perror("recv error\n");
