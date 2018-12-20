@@ -35,6 +35,9 @@ void addfd(int epollfd, int fd)
 
 int main(int argc, char* argv[]) 
 {
+printf("in= %d\nout = %d\nctl_add=%d\nctl_del=%d\nctl_mod=%d\nepollerr=%d\nepollhup=%d\net=%d\n", 
+        EPOLLIN, EPOLLOUT, EPOLL_CTL_ADD, EPOLL_CTL_DEL, EPOLL_CTL_MOD, EPOLLERR,EPOLLHUP, EPOLLET);
+    /*
     if (argc <= 2) 
     {
         printf("errno\n");
@@ -79,6 +82,7 @@ int main(int argc, char* argv[])
     //注册TCP、UDP socket上的可读事件
     addfd(epollfd, listenfd);
     addfd(epollfd, udpfd);
+
 
     while (1) 
     {
@@ -149,6 +153,7 @@ int main(int argc, char* argv[])
         }
     }
     close(listenfd);
+    */
     return 0;
 }
 

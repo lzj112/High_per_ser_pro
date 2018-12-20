@@ -291,6 +291,8 @@ int main(int argc, char *argv[])
 
         for (i = 0; i < nfd; i++) 
         {
+            //第一此触发的是listenfd,他的ptr是一开始就设置好的,里面的events设置为EPOLLIN
+            //接收新的连接后一开始先设置events为EPOLLIN,并且回调函数设置为recvdata
             struct myevent_s *ev = (struct myevent_s *)events[i].data.ptr;
             if ((events[i].events & EPOLLIN) && (ev->events & EPOLLIN)) 
             {

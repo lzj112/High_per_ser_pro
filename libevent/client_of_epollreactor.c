@@ -31,11 +31,11 @@ int main()
 
     char buf[] = "helloe world!";
     
-    while (1)
-    {
+    // while (1)
+    // {
         send(sockfd, buf, sizeof(buf), 0);
         printf("sending\n");
-        sleep(1);
-    }
+        // sleep(1);
+    // }
     //assert(ret > 0);
 }

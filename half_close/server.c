@@ -18,6 +18,14 @@
 
 int main() 
 {
+
+    int fd1 = open("/home/lzj/1", O_RDWR);
+    int fd2 = open("/home/lzj/1", O_RDWR);
+    assert(fd2 > 0);
+
+    printf("fd1 == %d  \nfd2 === %d\n", fd1, fd2);
+
+
     struct sockaddr_in address;
     bzero(&address, sizeof(address));
     inet_pton(AF_INET, IP, &address.sin_addr);
@@ -38,13 +46,15 @@ int main()
     socklen_t len = sizeof(clientaddress);
     int connfd = accept(sockfd, &clientaddress, &len);
 
+    // int ret = 0;
     char buf[20];
-    recv(connfd, buf, sizeof(buf), 0);
+    ret = recv(connfd, buf, sizeof(buf), 0);
     printf("recv from client :\n%s\n", buf);
 
     bzero(buf, sizeof(buf));
     strcpy(buf, "this is right!");
-    send(connfd, buf, sizeof(buf), 0);
+
+    ret = send(connfd, buf, sizeof(buf), 0);
 
     close(connfd);
 
